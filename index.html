@@ -10,10 +10,48 @@
 body{background:#f3f3f3;color:#111;padding:24px;display:flex;justify-content:center}
 .container{width:100%;max-width:var(--max-w);background:white;padding:22px;border:1px solid #ddd}
 h1{font-size:18px;margin:0 0 6px;text-align:center}
-.kop{display:flex;align-items:center;justify-content:space-between;border-bottom:2px solid #000;padding-bottom:8px;margin-bottom:14px}
-.logo{width:80px;height:80px;border:1px dashed #999;display:flex;align-items:center;justify-content:center;font-size:10px;color:#666}
-.kop-center{text-align:center}
-.kop-center .instansi{font-weight:700}
+.kop {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding-bottom: 6px;
+ margin-bottom: 20px; /* beri jarak bawah sedikit */
+}
+
+hr {
+  border: 2px solid #000;
+  margin: 6px 0 14px 120px; /* ⬅️ beri margin kiri agar tidak menabrak logo */
+}
+.kop .logo {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 90px;
+  height: 90px;
+}
+.kop .logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+.kop-center {
+  text-align: center;
+  flex: 1;
+  font-family: 'Times New Roman', Times, serif;
+}
+.kop-center .instansi {
+  font-size: 18px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+.kop-center .sub {
+  font-size: 14px;
+}
+.kop-center .small {
+  font-size: 12px;
+}
+
 .form-section{margin-top:8px}
 label{display:block;font-weight:600;margin-top:8px}
 select, input, textarea, button{font-family:inherit}
@@ -31,6 +69,55 @@ button.secondary{background:#666}
 #report{width:800px;padding:24px;background:white;color:#000;margin:12px auto;border:1px solid #999;display:none}
 #report .report-kop{display:flex;align-items:center;justify-content:space-between}
 #report .logo-sm{width:70px;height:70px;border:1px dashed #999;display:flex;align-items:center;justify-content:center;font-size:10px}
+.report-kop {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  padding-bottom: 4px;
+}
+
+.report-logo {
+  position: absolute;
+  left: 0;
+  width: 80px;
+  height: 80px;
+}
+
+.report-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.report-center {
+  text-align: center;
+  width: 100%;
+  font-family: 'Times New Roman', Times, serif;
+}
+
+.report-center .instansi {
+  font-size: 16px;
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+.report-center .sub {
+  font-size: 14px;
+  margin-top: 2px;
+}
+
+.report-center .alamat,
+.report-center .kontak {
+  font-size: 12px;
+  margin-top: 1px;
+}
+
+.report-line {
+  border: 2px solid #000;
+  margin: 6px 0 12px 0;
+}
+
 #report h2{text-align:center;margin:8px 0}
 #report table{width:100%;border-collapse:collapse;margin-top:10px}
 #report th, #report td{border:1px solid #000;padding:6px;font-size:12px;vertical-align:middle;text-align:center}
@@ -46,17 +133,20 @@ button.secondary{background:#666}
 </style>
 </head>
 <body>
-
 <div class="container">
-  <div class="kop">
-    <div class="logo">LOGO<br>INSTANSI</div>
-    <div class="kop-center">
-      <div class="instansi">Badan Karantina Indonesia</div>
-      <div class="sub small">Laboratorium Karantina Ikan - Laporan Penilaian Sensori</div>
-      <div class="small">Alamat instansi (placeholder)</div>
-    </div>
-    <div class="logo">LOGO<br>INSTANSI</div>
+<div class="kop">
+  <div class="logo">
+    <img src="https://karantinaindonesia.go.id/assets/backend/images/barantSan.png" alt="Logo Instansi" style="width:150px;height:80px;object-fit:contain;">
   </div>
+  <div class="kop-center">
+    <div class="instansi">BADAN KARANTINA INDONESIA</div>
+    <div class="sub small">LABORATORIUM KARANTINA HEWAN,IKAN DAN TUMBUHAN KALIMANTAN UTARA</div>
+    <div class="small">Jl. Yos Sudarso No.11 RT.04, Kel. Lingkas Ujung, Kec. Tarakan Timur, Kota Tarakan - Kalimantan Utara 77126</div>
+    <div class="small">TELEPON (0551) 21526 , 08115442414  FAKSIMILE (0551) 36508</div>
+  </div>
+</div>
+
+<hr style="border:2px solid #000;margin:6px 0 14px 0;">
 
   <h1>Lembar Penilaian Sensori - Ikan Segar</h1>
 
@@ -170,15 +260,19 @@ button.secondary{background:#666}
 
 <!-- Report (PDF) -->
 <div id="report">
-  <div class="report-kop">
-    <div class="logo-sm">LOGO</div>
-    <div style="text-align:center">
-      <div style="font-weight:700;">Badan Karantina Indonesia</div>
-      <div>Laporan Penilaian Sensori Ikan Segar</div>
-      <div class="small">Laboratorium Karantina Ikan (placeholder)</div>
-    </div>
-    <div class="logo-sm">LOGO</div>
+<div class="report-kop">
+  <div class="report-logo">
+    <img src="https://karantinaindonesia.go.id/assets/backend/images/barantSan.png" alt="Logo Instansi">
   </div>
+  <div class="report-center">
+    <div class="instansi">BADAN KARANTINA INDONESIA</div>
+    <div class="sub">LABORATORIUM KARANTINA IKAN</div>
+    <div class="alamat">Jl. Contoh No. 123, Jakarta</div>
+    <div class="kontak">Telp. (021) 12345678 | Email: contoh@karantina.go.id</div>
+  </div>
+</div>
+<hr class="report-line">
+
 
   <h2>Lembar Penilaian Sensori Ikan Segar</h2>
 
@@ -287,7 +381,7 @@ function populateReport(data) {
 
   const tb = document.getElementById('r-body');
   tb.innerHTML = '';
-  let html = `<tr><th>Spesifikasi</th><th>Nilai 1</th><th>Nilai 2</th><th>Nilai 3</th><th>Nilai 4</th><th>Nilai 5</th><th>Rata-rata</th></tr>`;
+  let html = `<tr><th>Spesifikasi</th><th>Sampel 1</th><th>Sampel 2</th><th>Sampel 3</th><th>Sampel 4</th><th>Sampel 5</th><th>Rata-rata</th></tr>`;
   const s = [
     { p: '1. Kenampakan', subs: [{ l: 'a. Mata', k: 'mata' }, { l: 'b. Insang', k: 'insang' }, { l: 'c. Lendir', k: 'lendir' }] },
     { p: '2. Daging', subs: [{ l: 'Daging', k: 'daging' }] },
