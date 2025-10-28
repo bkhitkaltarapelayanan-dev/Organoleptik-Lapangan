@@ -6,92 +6,66 @@
 <title>Laporan Penilaian Sensori - Organoleptik Ikan</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
 <style>
-/* === PERBAIKAN TAMPILAN TANPA UBAH STRUKTUR === */
-
-/* Jarak aman antara logo, teks, dan garis */
-.kop .logo img {
-  margin-bottom: 6px; /* beri ruang antara logo dan garis bawah */
-}
-
-.report-logo img {
-  margin-bottom: 6px; /* agar logo PDF tidak menempel garis */
-}
-
-.report-center {
-  padding-left: 40px; /* beri jarak aman dari logo kiri */
-}
-
-/* Garis bawah kop agar tidak menimpa logo */
-.report-line {
-  margin-top: 12px;
-  margin-left: 90px; /* sesuaikan lebar logo kiri */
-  margin-right: 0;
-}
-
-/* Area tanda tangan agar tidak menindih nama */
-#signature-container {
-  display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
-  height: 80px; /* beri tinggi cukup agar gambar tidak tumpang tindih */
-}
-
-#signature-container img {
-  max-height: 60px; /* batasi tinggi tanda tangan */
-  object-fit: contain;
-}
-
-#name-panelis {
-  margin-top: 6px; /* beri jarak kecil di bawah tanda tangan */
-  display: inline-block;
-}
-
 :root{--max-w:900px;font-family:'Times New Roman',Times,serif}
 body{background:#f3f3f3;color:#111;padding:24px;display:flex;justify-content:center}
 .container{width:100%;max-width:var(--max-w);background:white;padding:22px;border:1px solid #ddd}
 h1{font-size:18px;margin:0 0 6px;text-align:center}
-.kop {
+
+/* === KOP SURAT === */
+.kop, .report-kop {
   display: flex;
   align-items: center;
   justify-content: center;
   position: relative;
-  padding-bottom: 6px;
- margin-bottom: 20px; /* beri jarak bawah sedikit */
+  padding-bottom: 4px;
+  margin-bottom: 8px;
 }
 
-hr {
-  border: 2px solid #000;
-  margin: 6px 0 14px 120px; /* ⬅️ beri margin kiri agar tidak menabrak logo */
-}
-.kop .logo {
+.kop .logo, .report-logo {
   position: absolute;
   left: 0;
   top: 0;
   width: 90px;
   height: 90px;
 }
-.kop .logo img {
+
+.kop .logo img, .report-logo img {
   width: 100%;
   height: 100%;
   object-fit: contain;
 }
-.kop-center {
+
+.kop-center, .report-center {
   text-align: center;
-  flex: 1;
+  width: 100%;
   font-family: 'Times New Roman', Times, serif;
+  line-height: 1.2;
+  padding-left: 40px; /* jarak teks dari logo kiri */
 }
-.kop-center .instansi {
-  font-size: 18px;
+
+.kop-center .instansi,
+.report-center .instansi {
+  font-size: 16px;
   font-weight: bold;
   text-transform: uppercase;
 }
-.kop-center .sub {
-  font-size: 14px;
-}
-.kop-center .small {
+
+.kop-center .sub, .report-center .sub {
   font-size: 12px;
 }
 
+.kop-center .small, .report-center .alamat, .report-center .kontak {
+  font-size: 10px;
+}
+
+hr, .report-line {
+  border: 2px solid #000;
+  margin-top: 10px;
+  margin-bottom: 16px;
+  margin-left: 100px; /* ruang agar garis tidak menabrak logo */
+}
+
+/* === FORM === */
 .form-section{margin-top:8px}
 label{display:block;font-weight:600;margin-top:8px}
 select, input, textarea, button{font-family:inherit}
@@ -106,67 +80,38 @@ th{text-align:left;background:#efefef}
 .actions{display:flex;gap:10px;margin-top:12px}
 button{padding:8px 12px;border:0;background:#222;color:white;border-radius:4px;cursor:pointer}
 button.secondary{background:#666}
+
+/* === LAPORAN (PDF) === */
 #report{width:800px;padding:24px;background:white;color:#000;margin:12px auto;border:1px solid #999;display:none}
-#report .report-kop{display:flex;align-items:center;justify-content:space-between}
-#report .logo-sm{width:70px;height:70px;border:1px dashed #999;display:flex;align-items:center;justify-content:center;font-size:10px}
-.report-kop {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  padding-bottom: 4px;
-}
-
-.report-logo {
-  position: absolute;
-  left: 0;
-  width: 80px;
-  height: 80px;
-}
-
-.report-logo img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-.report-center {
-  text-align: center;
-  width: 100%;
-  font-family: 'Times New Roman', Times, serif;
-}
-
-.report-center .instansi {
-  font-size: 10px;
-  font-weight: bold;
-  text-transform: uppercase;
-}
-
-.report-center .sub {
-  font-size: 8px;
-  margin-top: 2px;
-}
-
-.report-center .alamat,
-.report-center .kontak {
-  font-size: 8px;
-  margin-top: 1px;
-}
-
-.report-line {
-  border: 2px solid #000;
-  margin: 6px 0 12px 0;
-}
-
 #report h2{text-align:center;margin:8px 0}
 #report table{width:100%;border-collapse:collapse;margin-top:10px}
 #report th, #report td{border:1px solid #000;padding:6px;font-size:12px;vertical-align:middle;text-align:center}
 #report td:first-child{text-align:left}
 .sign{width:120px;height:auto;margin-bottom:4px}
+
+/* === AREA TANDA TANGAN === */
+#signature-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  height: 90px;
+}
+#signature-container img {
+  max-height: 70px;
+  object-fit: contain;
+}
+#name-panelis {
+  margin-top: 8px;
+  display: inline-block;
+  font-style: italic;
+}
+
+/* === MODAL PDF PREVIEW === */
 #modal{position:fixed;inset:0;background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center}
 #modal .box{width:90%;height:90%;background:#fff;padding:10px;display:flex;flex-direction:column}
 #modal iframe{flex:1;border:1px solid #ccc}
 #modal .foot{display:flex;justify-content:flex-end;gap:8px;margin-top:8px}
+
 .spec-controls{display:flex;gap:8px;align-items:center;margin-top:6px}
 .spec-list{font-size:13px;color:#333;margin-left:8px}
 @media(max-width:800px){:root{--max-w:700px}.row{flex-direction:column}}
@@ -174,19 +119,19 @@ button.secondary{background:#666}
 </head>
 <body>
 <div class="container">
-<div class="kop">
-  <div class="logo">
-    <img src="https://karantinaindonesia.go.id/assets/backend/images/barantSan.png" alt="Logo Instansi" style="width:150px;height:80px;object-fit:contain;">
+  <div class="kop">
+    <div class="logo">
+      <img src="signatures/barantSan.png" alt="Logo Instansi">
+    </div>
+    <div class="kop-center">
+      <div class="instansi">BADAN KARANTINA INDONESIA</div>
+      <div class="sub small">LABORATORIUM KARANTINA HEWAN, IKAN, DAN TUMBUHAN KALIMANTAN UTARA</div>
+      <div class="small">Jl. Yos Sudarso No.11 RT.04, Kel. Lingkas Ujung, Kec. Tarakan Timur, Kota Tarakan - Kalimantan Utara 77126</div>
+      <div class="small">TELEPON (0551) 21526 , 08115442414  FAKSIMILE (0551) 36508</div>
+    </div>
   </div>
-  <div class="kop-center">
-    <div class="instansi">BADAN KARANTINA INDONESIA</div>
-    <div class="sub small">LABORATORIUM KARANTINA HEWAN,IKAN DAN TUMBUHAN KALIMANTAN UTARA</div>
-    <div class="small">Jl. Yos Sudarso No.11 RT.04, Kel. Lingkas Ujung, Kec. Tarakan Timur, Kota Tarakan - Kalimantan Utara 77126</div>
-    <div class="small">TELEPON (0551) 21526 , 08115442414  FAKSIMILE (0551) 36508</div>
-  </div>
-</div>
 
-<hr style="border:2px solid #000;margin:6px 0 14px 0;">
+  <hr>
 
   <h1>Lembar Penilaian Sensori - Ikan Segar</h1>
 
@@ -298,37 +243,28 @@ button.secondary{background:#666}
   </div>
 </div>
 
-<!-- Report (PDF) -->
+<!-- REPORT PDF -->
 <div id="report">
-<div class="report-kop">
-  <div class="report-logo">
-    <img src="signatures/barantSan.png" alt="Logo Instansi">
+  <div class="report-kop">
+    <div class="report-logo">
+      <img src="signatures/barantSan.png" alt="Logo Instansi">
+    </div>
+    <div class="report-center">
+      <div class="instansi">BADAN KARANTINA INDONESIA</div>
+      <div class="sub">LABORATORIUM KARANTINA HEWAN, IKAN, DAN TUMBUHAN KALIMANTAN UTARA</div>
+      <div class="alamat">Jl. Yos Sudarso No.11 RT.04, Kel. Lingkas Ujung, Kec. Tarakan Timur, Kota Tarakan - Kalimantan Utara 77126</div>
+      <div class="kontak">TELEPON (0551) 21526 , 08115442414  FAKSIMILE (0551) 36508</div>
+    </div>
   </div>
-  <div class="report-center">
-    <div class="instansi">BADAN KARANTINA INDONESIA</div>
-    <div class="sub">LABORATORIUM KARANTINA HEWAN,IKAN DAN TUMBUHAN KALIMANTAN UTARA</div>
-    <div class="alamat">Jl. Yos Sudarso No.11 RT.04, Kel. Lingkas Ujung, Kec. Tarakan Timur, Kota Tarakan - Kalimantan Utara 77126</div>
-    <div class="kontak">TELEPON (0551) 21526 , 08115442414  FAKSIMILE (0551) 36508</div>
-  </div>
-</div>
-<hr class="report-line">
-
+  <hr class="report-line">
 
   <h2>Lembar Penilaian Sensori Ikan Segar</h2>
-
   <div style="display:flex;justify-content:space-between;gap:10px;margin-top:6px">
-    <div>
-      <strong>Nama panelis:</strong> <span id="r-panelis"></span><br>
-      <strong>Tanggal:</strong> <span id="r-tanggal"></span>
-    </div>
-    <div>
-      <strong>Komoditas:</strong> <span id="r-kode"></span>
-    </div>
+    <div><strong>Nama panelis:</strong> <span id="r-panelis"></span><br><strong>Tanggal:</strong> <span id="r-tanggal"></span></div>
+    <div><strong>Komoditas:</strong> <span id="r-kode"></span></div>
   </div>
 
-  <table style="margin-top:10px;text-align:center">
-    <tbody id="r-body"></tbody>
-  </table>
+  <table style="margin-top:10px;text-align:center"><tbody id="r-body"></tbody></table>
 
   <div style="margin-top:14px"><strong>Keterangan:</strong> <div id="r-keterangan" style="white-space:pre-wrap;margin-top:6px"></div></div>
   <div style="margin-top:10px"><strong>Kesimpulan:</strong> <div id="r-kesimpulan" style="white-space:pre-wrap;margin-top:6px"></div></div>
@@ -340,7 +276,7 @@ button.secondary{background:#666}
   </div>
 </div>
 
-<!-- Modal -->
+<!-- MODAL PDF -->
 <div id="modal">
   <div class="box">
     <iframe id="pdfFrame"></iframe>
@@ -372,7 +308,6 @@ function tambahPenilaian(k) {
   nilaiStore[k].push(v); s.value = ''; updateDisplay(k);
 }
 
-// ✅ Otomatis load tanda tangan sesuai panelis & preload agar muncul di PDF
 document.getElementById('panelis').addEventListener('change', async () => {
   const panelis = document.getElementById('panelis').value;
   const name = document.getElementById('name-panelis');
@@ -385,13 +320,9 @@ document.getElementById('panelis').addEventListener('change', async () => {
     img.src = `signatures/${panelis}.png`;
     img.className = 'sign';
     img.crossOrigin = 'anonymous';
-
-    // pastikan gambar selesai dimuat sebelum lanjut
     await new Promise((resolve, reject) => {
-      img.onload = resolve;
-      img.onerror = reject;
+      img.onload = resolve; img.onerror = reject;
     });
-
     sig.appendChild(img);
   }
 });
@@ -402,14 +333,7 @@ function collectData() {
     tanggal: document.getElementById('tanggal').value || '-',
     kode: document.getElementById('kode').value || '-',
     keterangan: document.getElementById('keterangan').value || '-',
-    nilai: {
-      mata: [...nilaiStore.mata],
-      insang: [...nilaiStore.insang],
-      lendir: [...nilaiStore.lendir],
-      daging: [...nilaiStore.daging],
-      bau: [...nilaiStore.bau],
-      Tekstur: [...nilaiStore.Tekstur]
-    }
+    nilai: {...nilaiStore}
   };
 }
 
@@ -421,84 +345,38 @@ function populateReport(data) {
 
   const tb = document.getElementById('r-body');
   tb.innerHTML = '';
-  let html = `<tr><th>Spesifikasi</th><th>Sampel 1</th><th>Sampel 2</th><th>Sampel 3</th><th>Sampel 4</th><th>Sampel 5</th><th>Rata-rata</th></tr>`;
-  const s = [
-    { p: '1. Kenampakan', subs: [{ l: 'a. Mata', k: 'mata' }, { l: 'b. Insang', k: 'insang' }, { l: 'c. Lendir', k: 'lendir' }] },
-    { p: '2. Daging', subs: [{ l: 'Daging', k: 'daging' }] },
-    { p: '3. Bau', subs: [{ l: 'Bau', k: 'bau' }] },
-    { p: '4. Tekstur', subs: [{ l: 'Tekstur', k: 'Tekstur' }] }
-  ];
-  s.forEach(sec => {
-    html += `<tr><td colspan="7" style="font-weight:bold;">${sec.p}</td></tr>`;
-    sec.subs.forEach(sub => {
-      const a = data.nilai[sub.k] || [];
-      const r = a.length ? (a.reduce((x, y) => x + y, 0) / a.length).toFixed(2) : '-';
-      html += `<tr><td>${sub.l}</td>`;
-      for (let i = 0; i < 5; i++) { html += `<td>${a[i] !== undefined ? a[i] : '-'}</td>` }
-      html += `<td>${r}</td></tr>`;
-    });
-  });
-  tb.innerHTML = html;
-
-  const all = [];
-  Object.values(data.nilai).forEach(a => { if (a.length) { all.push(a.reduce((x, y) => x + y, 0) / a.length) } });
-  const adaKurang7 = all.some(avg => avg < 7);
-  const tot = all.length ? (all.reduce((x, y) => x + y, 0) / all.length).toFixed(2) : '-';
-  const k = (adaKurang7)
-    ? "Beberapa spesifikasi belum memenuhi standar."
-    : (tot >= 7 ? "Memenuhi standar kualitas ikan segar." : "Beberapa spesifikasi belum memenuhi standar.");
-  document.getElementById('r-kesimpulan').innerText = k;
-}
-
-async function renderReportToPdf(preview = true) {
-  const d = collectData();
-  populateReport(d);
-
-  const el = document.getElementById('report');
-  el.style.display = 'block';
-
-  // ✅ Pastikan semua gambar tanda tangan termuat sempurna sebelum capture
-  const imgs = el.querySelectorAll('img');
-  await Promise.all(Array.from(imgs).map(img => {
-    if (img.complete) return Promise.resolve();
-    return new Promise(resolve => { img.onload = resolve; img.onerror = resolve; });
-  }));
-
-  const canvas = await html2canvas(el, { scale: 3, useCORS: true, allowTaint: false });
-  const imgData = canvas.toDataURL('image/png');
-  const { jsPDF } = window.jspdf;
-  const pdf = new jsPDF('p', 'mm', 'a4');
-  const imgW = 210;
-  const imgH = (canvas.height * imgW) / canvas.width;
-  pdf.addImage(imgData, 'PNG', 0, 0, imgW, imgH);
-
-  const blob = pdf.output('blob');
-  const url = URL.createObjectURL(blob);
-  el.style.display = 'none';
-
-  if (preview) {
-    document.getElementById('pdfFrame').src = url;
-    document.getElementById('modalDownload').href = url;
-    document.getElementById('modal').style.display = 'flex';
-  } else {
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = 'laporan-organoleptik.pdf';
-    a.click();
+  for (const [key, arr] of Object.entries(data.nilai)) {
+    const avg = arr.length ? (arr.reduce((a,b)=>a+b,0)/arr.length).toFixed(2) : '-';
+    tb.innerHTML += `<tr><td>${key}</td><td>${arr.join(', ') || '-'}</td><td>${avg}</td></tr>`;
   }
 }
 
-document.getElementById('previewBtn').addEventListener('click', () => renderReportToPdf(true));
-document.getElementById('downloadBtn').addEventListener('click', () => renderReportToPdf(false));
-document.getElementById('modalClose').addEventListener('click', () => {
-  document.getElementById('modal').style.display = 'none';
-});
+async function renderReportToPdf(openInNewTab=true) {
+  const data = collectData();
+  populateReport(data);
+  const el = document.getElementById('report');
+  el.style.display = 'block';
+  const canvas = await html2canvas(el, { scale:3, useCORS:true });
+  const img = canvas.toDataURL('image/png');
+  const { jsPDF } = window.jspdf;
+  const pdf = new jsPDF({orientation:'p',unit:'pt',format:'a4'});
+  const w = pdf.internal.pageSize.getWidth();
+  const h = pdf.internal.pageSize.getHeight();
+  const imgH = canvas.height * (w / canvas.width);
+  pdf.addImage(img, 'PNG', 0, 0, w, imgH);
+  const blob = pdf.output('bloburl');
+  if (openInNewTab) window.open(blob);
+  else {
+    document.getElementById('modal').style.display='flex';
+    document.getElementById('pdfFrame').src=blob;
+    document.getElementById('modalDownload').href=blob;
+  }
+  el.style.display='none';
+}
+
+document.getElementById('previewBtn').onclick = ()=>renderReportToPdf(false);
+document.getElementById('downloadBtn').onclick = ()=>renderReportToPdf(true);
+document.getElementById('modalClose').onclick = ()=>document.getElementById('modal').style.display='none';
 </script>
-
-
 </body>
 </html>
-
-
-
-
