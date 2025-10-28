@@ -6,6 +6,46 @@
 <title>Laporan Penilaian Sensori - Organoleptik Ikan</title>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
 <style>
+/* === PERBAIKAN TAMPILAN TANPA UBAH STRUKTUR === */
+
+/* Jarak aman antara logo, teks, dan garis */
+.kop .logo img {
+  margin-bottom: 6px; /* beri ruang antara logo dan garis bawah */
+}
+
+.report-logo img {
+  margin-bottom: 6px; /* agar logo PDF tidak menempel garis */
+}
+
+.report-center {
+  padding-left: 40px; /* beri jarak aman dari logo kiri */
+}
+
+/* Garis bawah kop agar tidak menimpa logo */
+.report-line {
+  margin-top: 12px;
+  margin-left: 90px; /* sesuaikan lebar logo kiri */
+  margin-right: 0;
+}
+
+/* Area tanda tangan agar tidak menindih nama */
+#signature-container {
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  height: 80px; /* beri tinggi cukup agar gambar tidak tumpang tindih */
+}
+
+#signature-container img {
+  max-height: 60px; /* batasi tinggi tanda tangan */
+  object-fit: contain;
+}
+
+#name-panelis {
+  margin-top: 6px; /* beri jarak kecil di bawah tanda tangan */
+  display: inline-block;
+}
+
 :root{--max-w:900px;font-family:'Times New Roman',Times,serif}
 body{background:#f3f3f3;color:#111;padding:24px;display:flex;justify-content:center}
 .container{width:100%;max-width:var(--max-w);background:white;padding:22px;border:1px solid #ddd}
